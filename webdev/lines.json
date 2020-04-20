@@ -1,0 +1,140 @@
+{
+    "lines": [
+        {
+            "code": "59",
+            "code1": "A",
+            "shortName": "A",
+            "longName": "Tram A",
+            "type": "Tram",
+            "col": "831f82"
+        },
+        {
+            "code": "60",
+            "code1": "B",
+            "shortName": "B",
+            "longName": "Tram B",
+            "type": "Tram",
+            "col": "e50040"
+        },
+        {
+            "code": "61",
+            "code1": "C",
+            "shortName": "C",
+            "longName": "Tram C",
+            "type": "Tram",
+            "col": "d35098"
+        },
+        {
+            "code": "62",
+            "shortName": "D",
+            "longName": "Tram D",
+            "type": "Tram",
+            "col": "9262a3"
+        },
+        {
+            "code": "01",
+            "shortName": "1",
+            "longName": "Liane 1",
+            "type": "Bus",
+            "col": "0086cb"
+        },
+        {
+            "code": "02",
+            "shortName": "2",
+            "longName": "Liane 2",
+            "type": "Bus",
+            "col": "0086cb"
+        },
+        {
+            "code": "03",
+            "shortName": "3",
+            "longName": "Liane 3",
+            "type": "Bus",
+            "col": "0086cb"
+        },
+        {
+            "code": "04",
+            "shortName": "4",
+            "longName": "Liane 4",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "05",
+            "shortName": "5",
+            "longName": "Liane 5",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "05",
+            "shortName": "5",
+            "longName": "Liane 5",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "06",
+            "shortName": "6",
+            "longName": "Liane 6",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "07",
+            "shortName": "7",
+            "longName": "Liane 7",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "08",
+            "shortName": "8",
+            "longName": "Liane 8",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "09",
+            "shortName": "9",
+            "longName": "Liane 9",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "10",
+            "shortName": "10",
+            "longName": "Liane 10",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "11",
+            "shortName": "11",
+            "longName": "Liane 11",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "12",
+            "shortName": "12",
+            "longName": "Liane 12",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "13",
+            "shortName": "13",
+            "longName": "Liane 13",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "14",
+            "shortName": "14",
+            "longName": "Liane 14",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "15",
+            "shortName": "15",
+            "longName": "Liane 15",
+            "type": "Bus","col":"0086cb"
+        },
+        {
+            "code": "69",
+            "shortName": "BAT3",
+            "longName": "BAT 3",
+            "type": "Bat","col":"231f20"
+        }
+    ]
+}
