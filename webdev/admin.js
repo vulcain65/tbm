@@ -1,4 +1,6 @@
-"use strict"
+/** @format */
+
+"use strict";
 
 /** @format */
 let jsonInfoLine = {};
@@ -8,7 +10,7 @@ let stopPoints = {};
 let btView = {};
 let delay = {};
 
-const list = [];
+const list = {};
 /*
  * --------------------------------------------  LINES
  */
@@ -84,16 +86,26 @@ const onFetchSuccessLines = json => {
     ret.vdestination = destinations.options[destinations.selectedIndex].value;
     ret.stopPoint = stopPoints.options[stopPoints.selectedIndex].text;
     ret.vstopPoint = stopPoints.options[stopPoints.selectedIndex].value;
+    ret.NumStopPoint = ret.vstopPoint.split("/")[0];
     ret.delay = delay.value;
+    ret.id = ret.vline + "-" + ret.NumStopPoint + "-" + ret.delay;
+    //ret.infoLine = jsonInfoLine.destinations[ret.vline][ret.vdestination];
+    ret.infoLine = jsonInfoLine.destinations[Number(ret.vline)];
+    ret.infoStopPoint = jsonInfoLine.destinations[Number(ret.vline)].routes[
+      Number(ret.vdestination)
+    ].stopPoints.find(o => o.externalCode === ret.NumStopPoint);
 
-    list.push(ret);
+    console.log(jsonInfoLine.destinations[ret.vline].routes[ret.vdestination]);
+    // à verifier si deja existant
+    list[ret.id] = ret;
 
     const template = document.querySelector("#templateStopPoint");
-    template.content.querySelector(".js-title").innerText = ret.stopPoint
-    template.content.querySelector("div").setAttribute("id", ret.vstopPoint);
+    template.content.querySelector(".js-title").innerText = ret.stopPoint;
+    template.content.querySelector(".js-stitle").innerText =
+      ret.line + " : " + ret.destination;
     const clone = document.importNode(template.content, true);
     document.querySelector("#cards").appendChild(clone);
-    console.log(ret);
+    //console.log(ret);
   });
 };
 const onFetchErrorLines = error => {
