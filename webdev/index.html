@@ -12,14 +12,17 @@
   <title>Bus</title>
 </head>
 
-<body>
-  <div id="inputs" class="uk-child-width-1-1@m uk-grid-small uk-grid-match" uk-grid>
+<div class="cardhide uk-section-primary uk-text-large" hidden uk-toggle="target: .cardhide; animation: uk-animation-scale-up">
+  prochains passages
+</div>
+  
+  <div id="inputs" class="cardhide uk-child-width-1-1@m uk-grid-small uk-grid-match" uk-grid>
     <div class="uk-card-small uk-card-primary uk-card-body">
       <div class="uk-card-header">
         <h3 class="uk-card-title" uk-toggle="target: .cardhide; animation: uk-animation-scale-up">Prochains passages
         </h3>
       </div>
-      <div class="cardhide uk-card-body">
+      <div class="uk-card-body">
         <form class="ukq-form-small ">
           <fieldset class="uk-fieldset">
             <select id="lines" class="uk-select uk-form-width-mediumx">
