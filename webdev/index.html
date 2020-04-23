@@ -59,7 +59,7 @@
       TEMPLATE CARD
     -->
   <template id="templateStopPoint">
-    <div>
+    <div class="test">
       <!--<div class="uk-card-small uk-card-default uk-card-body">-->
       <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
         <div class="uk-card-badge uk-label">Badge</div>
@@ -76,28 +76,39 @@
           </div>
         </div>
         <div class="uk-card-body">
-          <p>body</p>
+          <table class="uk-table">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th>destination</th>
+                    <th>Prochains passages</th>
+                    <th>partir dans</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>AA</td>
+                </tr>
+            </tfoot>
+            <tbody >
+                <tr class="js-passages">
+                    <td></td><td></td><td></td>
+                </tr>
+            </tbody>
+        </table>
         </div>
         <div class="uk-card-footer">
-          <button onclick="return false;" class="uk-button uk-button-default uk-button-small">
+      <!--    <button onclick="return false;" class="uk-button uk-button-default uk-button-small">
             VOIR
-          </button>
+          </button>-->
         </div>
       </div>
     </div>
   </template>
-  <template>
-    <div class="pure-g">
-      <div class="pure-u-3-5">
-        <p>Thirds</p>
-      </div>
-      <div class="pure-u-1-5">
-        <p>Thirds</p>
-      </div>
-      <div class="pure-u-1-5">
-        <p>Thirds</p>
-      </div>
-    </div>
+  <template id = "templatePassage">
+    <td class="js-destination"></td><td class="js-tbmdelay"></td><td class="js-delay"></td>
   </template>
 </body>
 

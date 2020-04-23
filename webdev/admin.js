@@ -78,6 +78,7 @@ const onFetchSuccessLines = json => {
     //var lineValue = lines.options[lines.selectedIndex].value;
     var stopPointValue = stopPoints.options[stopPoints.selectedIndex].value;
     var ret = {};
+    ret.enable;
     ret.url =
       "https://ws.infotbm.com/ws/1.0/get-realtime-pass/" + stopPointValue;
     ret.line = lines.options[lines.selectedIndex].text;
@@ -89,23 +90,24 @@ const onFetchSuccessLines = json => {
     ret.NumStopPoint = ret.vstopPoint.split("/")[0];
     ret.delay = delay.value;
     ret.id = ret.vline + "-" + ret.NumStopPoint + "-" + ret.delay;
-    //ret.infoLine = jsonInfoLine.destinations[ret.vline][ret.vdestination];
     ret.infoLine = jsonInfoLine.destinations[Number(ret.vline)];
     ret.infoStopPoint = jsonInfoLine.destinations[Number(ret.vline)].routes[
       Number(ret.vdestination)
     ].stopPoints.find(o => o.externalCode === ret.NumStopPoint);
 
-    console.log(jsonInfoLine.destinations[ret.vline].routes[ret.vdestination]);
-    // à verifier si deja existant
-    list[ret.id] = ret;
-
-    const template = document.querySelector("#templateStopPoint");
-    template.content.querySelector(".js-title").innerText = ret.stopPoint;
-    template.content.querySelector(".js-stitle").innerText =
-      ret.line + " : " + ret.destination;
-    const clone = document.importNode(template.content, true);
-    document.querySelector("#cards").appendChild(clone);
-    //console.log(ret);
+    if (document.getElementById(ret.id) == null) {
+      const template = document.querySelector("#templateStopPoint");
+      const clone = document.importNode(template.content, true);
+      clone.querySelector("div").id = ret.id;
+      clone.querySelector(".js-title").innerText = ret.stopPoint;
+      clone.querySelector(".js-stitle").innerText =
+        ret.line + " : " + ret.destination;
+      document.querySelector("#cards").appendChild(clone);
+      list[ret.id] = ret;
+      computeStopPoint(ret);
+    } else {
+      console.log("element not create. element exist");
+    }
   });
 };
 const onFetchErrorLines = error => {
@@ -189,7 +191,38 @@ const onFetchErrorLine = json => {
   alert("onFetchErrorLine");
   console.log(json);
 };
+/*
+ * --------------------------------------------  STOPPOINT
+ *
+ */
+const onFetchSuccessStopPoint = json => {
+  alert(stp.url);
+  console.log("onFetchSuccessStopPoint");
+};
+const onFetchErrorStopPoint = json => {
+  alert("onFetchErrorStopPoint");
+  console.log(json);
+};
 
+function computeStopPoint(stp) {
+  console.log("computeStopPoint : " + stp.url);
+  fetch(stp.url)
+    .then(response => response.json())
+    .then(function(json) {
+      console.log(json);
+      console.log(stp);
+    })
+    .catch(onFetchErrorStopPoint);
+
+  /*fetch(stp.url)
+    .then(response => response.json())
+    .then(onFetchSuccessStopPoint)
+    .catch(onFetchErrorStopPoint);*/
+}
+/*
+ * --------------------------------------------  START
+ *
+ */
 fetch("./lines.json")
   .then(response => response.json())
   .then(onFetchSuccessLines)
