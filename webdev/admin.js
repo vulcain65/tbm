@@ -11,6 +11,14 @@ let btView = {};
 let delay = {};
 
 const list = {};
+const x = setInterval(function() {
+  for (let [key, value] of Object.entries(list)) {
+    if (value.enable){
+      console.log(`compute : ${key}`);
+      computeStopPoint(value)
+    }
+  }
+}, 30000);
 /*
  * --------------------------------------------  LINES
  */
@@ -78,7 +86,7 @@ const onFetchSuccessLines = json => {
     //var lineValue = lines.options[lines.selectedIndex].value;
     var stopPointValue = stopPoints.options[stopPoints.selectedIndex].value;
     var ret = {};
-    ret.enable;
+    ret.enable = false;
     ret.url =
       "https://ws.infotbm.com/ws/1.0/get-realtime-pass/" + stopPointValue;
     ret.line = lines.options[lines.selectedIndex].text;
@@ -89,7 +97,7 @@ const onFetchSuccessLines = json => {
     ret.vstopPoint = stopPoints.options[stopPoints.selectedIndex].value;
     ret.NumStopPoint = ret.vstopPoint.split("/")[0];
     ret.delay = delay.value;
-    ret.id = ret.vline + "-" + ret.NumStopPoint + "-" + ret.delay;
+    ret.id = "Z" + ret.vline + "-" + ret.NumStopPoint + "-" + ret.delay;
     ret.infoLine = jsonInfoLine.destinations[Number(ret.vline)];
     ret.infoStopPoint = jsonInfoLine.destinations[Number(ret.vline)].routes[
       Number(ret.vdestination)
@@ -173,7 +181,7 @@ const onFetchSuccessLine = json => {
       "stopPoints"
     ].map(function(stopPoint, index) {
       //var stopPoints = document.getElementById('stopPoints');
-      console.log(stopPoint.externalCode + " : " + stopPoint.name);
+      //console.log(stopPoint.externalCode + " : " + stopPoint.name);
       var opt = document.createElement("option");
       opt.value =
         stopPoint.externalCode +
@@ -209,8 +217,64 @@ function computeStopPoint(stp) {
   fetch(stp.url)
     .then(response => response.json())
     .then(function(json) {
+      var bodyPassages = document.querySelector(`#${stp.id} .js-bodyPassages`);
+      var stopArray = [];
+      console.log("computeStopPoint : start");
       console.log(json);
-      console.log(stp);
+      for (let [key, value] of Object.entries(json.destinations)) {
+        console.log(`--> ${key}`);
+        value.map(function(st, index) {
+          stopArray.push(st);
+        });
+      }
+      // sort
+      console.log("sort");
+      stopArray.sort(function(a, b) {
+        return (
+          Number(a.waittime.replace(/:/gi, "")) -
+          Number(b.waittime.replace(/:/gi, ""))
+        );
+      });
+      // add delay
+
+      // compute
+      console.log(stopArray);
+      let nb_st = stopArray.length; // nb <tr> in <tbody>
+      var nb_tr = bodyPassages.querySelectorAll("tr").length; // nb stopPoint return tbm
+      console.log(`nb_st = ${nb_st} / nb_tr = ${nb_tr}`);
+      if (nb_tr > nb_st) {
+        // if nb_tr > nb_st : delete
+        do {
+          let trs = bodyPassages.querySelectorAll("tr");
+          document.querySelector(`#${stp.id} table`).deleteRow(nb_tr);
+          nb_tr = bodyPassages.querySelectorAll(".js-bodyPassages >tr").length;
+        } while (nb_tr > nb_st);
+      } else if (nb_tr < nb_st) {
+        // if nb_tr < nb_st : create
+        do {
+          console.log("add row");
+          let template = document.importNode(
+            document.querySelector("#templatePassage").content,
+            true
+          );
+          bodyPassages.appendChild(template);
+          nb_tr++;
+        } while (nb_tr < nb_st);
+      }
+      // display value
+      stopArray.map(function(s, index) {
+        let body = document.querySelector(`#${stp.id} tbody`);
+        body
+          .getElementsByTagName("tr")
+          [index].getElementsByTagName("td")[0].innerHTML = s.destination_name;
+        body
+          .getElementsByTagName("tr")
+          [index].getElementsByTagName("td")[1].innerHTML = s.waittime;
+
+        console.log(s.waittime);
+      });
+      // active this stopPoint
+      stp.enable = true;
     })
     .catch(onFetchErrorStopPoint);
 

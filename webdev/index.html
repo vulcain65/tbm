@@ -12,104 +12,97 @@
   <title>Bus</title>
 </head>
 
-<div class="cardhide uk-section-primary uk-text-large uk-text-bold uk-text-center" hidden uk-toggle="target: .cardhide; animation: uk-animation-scale-up">
+<div class="cardhide uk-section-primary uk-text-large uk-text-bold uk-text-center" hidden
+  uk-toggle="target: .cardhide; animation: uk-animation-scale-up">
   prochains passages
 </div>
-  
-  <div id="inputs" class="cardhide uk-child-width-1-1@m uk-grid-small uk-grid-match" uk-grid>
-    <div class="uk-card-small uk-card-primary uk-card-body">
-      <div class="uk-card-header">
-        <h3 class="uk-card-title" uk-toggle="target: .cardhide; animation: uk-animation-scale-up">Prochains passages
-        </h3>
-      </div>
-      <div class="uk-card-body">
-        <form class="ukq-form-small ">
-          <fieldset class="uk-fieldset">
-            <select id="lines" class="uk-select uk-form-width-mediumx">
-            </select>
-            <select id="destinations" class="uk-select uk-form-width-mediumx">
-            </select>
-            <select id="stopPoints" class="uk-select uk-form-width-mediumx">
-            </select>
-            <label for="delay">Temps arrivé arrêt : <span id="vdelay">0</span> mn</label>
-            <input id="delay" class="uk-range uk-form-width-mediumx" type="range"
-              oninput="document.getElementById('vdelay').innerText=this.value" value="0" min="0" max="59" step="1" />
-          </fieldset>
-        </form>
-      </div>
-      <div class="cardhide uk-card-footer">
-        <button id="btView" onclick="return false;" class="uk-button uk-button-default uk-button-small">
-          VOIR
-        </button>
-      </div>
-    </div>
-  </div>
-  <div id="cards" class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid></div>
 
-  <!--
-    <div>
-      <div class="uk-card uk-card-default uk-card-body">
-        <h3 class="uk-card-title">Default</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
+<div id="inputs" class="cardhide uk-child-width-1-1@m uk-grid-small uk-grid-match" uk-grid>
+  <div class="uk-card-small uk-card-primary uk-card-body">
+    <div class="uk-card-header">
+      <h3 class="uk-card-title" uk-toggle="target: .cardhide; animation: uk-animation-scale-up">Prochains passages
+      </h3>
+    </div>
+    <div class="uk-card-body">
+      <form class="ukq-form-small ">
+        <fieldset class="uk-fieldset">
+          <select id="lines" class="uk-select uk-form-width-mediumx">
+          </select>
+          <select id="destinations" class="uk-select uk-form-width-mediumx">
+          </select>
+          <select id="stopPoints" class="uk-select uk-form-width-mediumx">
+          </select>
+          <label for="delay">Temps arrivé arrêt : <span id="vdelay">0</span> mn</label>
+          <input id="delay" class="uk-range uk-form-width-mediumx" type="range"
+            oninput="document.getElementById('vdelay').innerText=this.value" value="0" min="0" max="59" step="1" />
+        </fieldset>
+      </form>
+    </div>
+    <div class="cardhide uk-card-footer">
+      <button id="btView" onclick="return false;" class="uk-button uk-button-default uk-button-small">
+        VOIR
+      </button>
     </div>
   </div>
--->
-  <!--
+</div>
+<div id="cards" class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid></div>
+<!--
       TEMPLATE CARD
     -->
-  <template id="templateStopPoint">
-    <div class="test">
-      <!--<div class="uk-card-small uk-card-default uk-card-body">-->
-      <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
-        <div class="uk-card-badge uk-label">Badge</div>
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-expand">
-              <h3 class="js-title uk-card-title uk-margin-remove-bottom">
-                Title
-              </h3>
-              <p class="js-stitle uk-text-meta uk-margin-remove-top">
-                <time datetime="2016-04-01T19:00">S/Title</time>
-              </p>
-            </div>
+<template id="templateStopPoint">
+  <div class="test">
+    <!--<div class="uk-card-small uk-card-default uk-card-body">-->
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
+      <div class="uk-card-badge uk-label">Badge</div>
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-expand">
+            <h3 class="js-title uk-card-title uk-margin-remove-bottom">
+              Title
+            </h3>
+            <p class="js-stitle uk-text-meta uk-margin-remove-top">
+              <time datetime="2016-04-01T19:00">S/Title</time>
+            </p>
           </div>
         </div>
-        <div class="uk-card-body">
-          <table class="uk-table">
-            <caption></caption>
-            <thead>
-                <tr>
-                    <th>destination</th>
-                    <th>Prochains passages</th>
-                    <th>partir dans</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>AA</td>
-                </tr>
-            </tfoot>
-            <tbody >
-                <tr class="js-passages">
-                    <td></td><td></td><td></td>
-                </tr>
-            </tbody>
+      </div>
+      <div class="uk-card-body">
+        <table class="uk-table">
+          <caption></caption>
+          <thead>
+            <tr>
+              <th>destination</th>
+              <th>Prochains passages</th>
+              <th>partir dans</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td>foot</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
+          <tbody class="js-bodyPassages">
+
+          </tbody>
         </table>
-        </div>
-        <div class="uk-card-footer">
-      <!--    <button onclick="return false;" class="uk-button uk-button-default uk-button-small">
+      </div>
+      <div class="uk-card-footer">
+        <!--    <button onclick="return false;" class="uk-button uk-button-default uk-button-small">
             VOIR
           </button>-->
-        </div>
       </div>
     </div>
-  </template>
-  <template id = "templatePassage">
-    <td class="js-destination"></td><td class="js-tbmdelay"></td><td class="js-delay"></td>
-  </template>
+  </div>
+</template>
+<template id="templatePassage">
+  <tr class="js-passages">
+    <td class="js-destination"></td>
+    <td class="js-tbmdelay"></td>
+    <td class="js-delay"></td>
+  </tr>
+</template>
 </body>
 
 </html>
