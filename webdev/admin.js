@@ -13,9 +13,9 @@ let delay = {};
 const list = {};
 const x = setInterval(function() {
   for (let [key, value] of Object.entries(list)) {
-    if (value.enable){
+    if (value.enable) {
       console.log(`compute : ${key}`);
-      computeStopPoint(value)
+      computeStopPoint(value);
     }
   }
 }, 30000);
@@ -110,6 +110,13 @@ const onFetchSuccessLines = json => {
       clone.querySelector(".js-title").innerText = ret.stopPoint;
       clone.querySelector(".js-stitle").innerText =
         ret.line + " : " + ret.destination;
+      clone
+        .querySelector(".js-btCloseStopPoint")
+        .addEventListener("click", function() {
+          //alert("yes" + ret.id) ;
+          delete list[ret.id]
+          document.getElementById(ret.id).remove();
+        });
       document.querySelector("#cards").appendChild(clone);
       list[ret.id] = ret;
       computeStopPoint(ret);
